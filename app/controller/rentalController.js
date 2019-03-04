@@ -42,8 +42,8 @@ class RentalController{
      }
 
      findByYear(req, res){
-          let car_year = req.params.car_year;
-          this.rentalDao.findByYear(car_year)
+          let year = req.params.car_year;
+          this.rentalDao.findByYear(year)
                .then(this.common.findSuccess(res))
                .catch(this.common.findError(res));
      }
@@ -53,7 +53,7 @@ class RentalController{
   
           rental.car_model = req.body.car_model;
           rental.dealer = req.body.dealer;
-          rental.car_year = req.body.car_year;
+          rental.year = req.body.year;
           rental.car_color = req.body.car_color;
           rental.car_price = req.body.car_price;
           rental.car_hps = req.body.car_hps;
@@ -74,7 +74,7 @@ class RentalController{
      rental.id = req.body.id;
      rental.car_model = req.body.car_model;
      rental.dealer = req.body.dealer;
-     rental.car_year = req.body.car_year;
+     rental.year = req.body.year;
      rental.car_color = req.body.car_color;
      rental.car_price = req.body.car_price;
      rental.car_hps = req.body.car_hps;

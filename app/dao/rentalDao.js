@@ -6,7 +6,7 @@ class RentalDao{
           this.common = new daoCommon();
      }
      findAll(){
-          let sqlRequest = "SELECT * FROM cars ORDER BY car_year ASC";
+          let sqlRequest = "SELECT * FROM cars ORDER BY year ASC";
           return this.common.findAll(sqlRequest).then(rows => {
                let rentals = [];
                for (const row of rows){
@@ -14,7 +14,7 @@ class RentalDao{
                          row.id,
                          row.car_model,
                          row.dealer,
-                         row.car_year,
+                         row.year,
                          row.car_color,
                          row.car_price,
                          row.car_hps,
@@ -36,7 +36,7 @@ class RentalDao{
                          row.id,
                          row.car_model,
                          row.dealer,
-                         row.car_year,
+                         row.year,
                          row.car_color,
                          row.car_price,
                          row.car_hps,
@@ -58,7 +58,7 @@ class RentalDao{
                          row.id,
                          row.car_model,
                          row.dealer,
-                         row.car_year,
+                         row.year,
                          row.car_color,
                          row.car_price,
                          row.car_hps,
@@ -82,7 +82,7 @@ class RentalDao{
                          row.id,
                          row.car_model,
                          row.dealer,
-                         row.car_year,
+                         row.year,
                          row.car_color,
                          row.car_price,
                          row.car_hps,
@@ -96,8 +96,8 @@ class RentalDao{
           });
      }
 
-     findByYear(car_year){
-          let sqlRequest = "SELECT * FROM cars WHERE car_year= " + car_year;
+     findByYear(year){
+          let sqlRequest = "SELECT * FROM cars WHERE year= " + year;
           return this.common.findAll(sqlRequest).then(rows => {
                let rentals = [];
                for(const row of rows){
@@ -105,7 +105,7 @@ class RentalDao{
                          row.id,
                          row.car_model,
                          row.dealer,
-                         row.car_year,
+                         row.year,
                          row.car_color,
                          row.car_price,
                          row.car_hps,
@@ -120,12 +120,12 @@ class RentalDao{
      }
 
      create(Rental){
-          let sqlRequest = "INSERT into cars (car_model, dealer, car_year,  car_color, car_price, car_hps, car_mileage, car_damages, car_condition, car_seats, car_report) "  +  " VALUES ($car_model, $dealer, $car_year, $car_price, $car_hps, $car_mileage, $car_damages, $car_condition, $car_seats, $car_report)";
+          let sqlRequest = "INSERT into cars (car_model, dealer, year,  car_color, car_price, car_hps, car_mileage, car_damages, car_condition, car_seats, car_report) "  +  " VALUES ($car_model, $dealer, $year, $car_price, $car_hps, $car_mileage, $car_damages, $car_condition, $car_seats, $car_report)";
   
           let sqlParams = {
               $car_model: Rental.car_model,
               $dealer: Rental.dealer,
-              $car_year: Rental.car_year,
+              $year: Rental.year,
               $car_color: Rental.car_color,
               $car_price: Rental.car_price,
               $car_hps: Rental.car_hps,
