@@ -21,11 +21,11 @@ router.get("/:id", function(req, res){
      console.log(req.params.id);
 });
 
-router.get("/dealer/:dealer", function(req, res){
+router.get("/:dealer", function(req, res){
      rentalController.findByDealer(req, res);
 });
 
-router.get("/year/:year", function(req, res){
+router.get("/:year", function(req, res){
      rentalController.findByYear(req,res);
 });
 

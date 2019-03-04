@@ -42,7 +42,7 @@ class RentalController{
      }
 
      findByYear(req, res){
-          let year = req.params.car_year;
+          let year = req.params.year;
           this.rentalDao.findByYear(year)
                .then(this.common.findSuccess(res))
                .catch(this.common.findError(res));
