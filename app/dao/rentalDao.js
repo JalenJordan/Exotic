@@ -74,7 +74,9 @@ class RentalDao{
 
 
      findByDealer(dealer){
-          let sqlRequest = "SELECT * FROM cars WHERE dealer = " + dealer + "'";
+          let sqlRequest = "SELECT * FROM cars WHERE dealer ='" + dealer + "' ";
+          console.log(sqlRequest);
+          
           return this.common.findAll(sqlRequest).then(rows => {
                let rentals = [];
                for (const row of rows){
@@ -91,7 +93,7 @@ class RentalDao{
                          row.car_seats,
                          row.car_report 
                     ));
-               }
+               }               
                return rentals;
           });
      }
