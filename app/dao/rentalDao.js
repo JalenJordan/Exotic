@@ -96,6 +96,29 @@ class RentalDao{
           });
      }
 
+     findByYear(car_year){
+          let sqlRequest = "SELECT * FROM cars WHERE car_year= " + car_year;
+          return this.common.findAll(sqlRequest).then(rows => {
+               let rentals = [];
+               for(const row of rows){
+                    rentals.push(new Rental(
+                         row.id,
+                         row.car_model,
+                         row.dealer,
+                         row.car_year,
+                         row.car_color,
+                         row.car_price,
+                         row.car_hps,
+                         row.car_mileage,
+                         row.car_condition,
+                         row.car_seats,
+                         row.car_report
+                    ));
+               }
+               return rentals;
+          });
+     }
+
      create(Rental){
           let sqlRequest = "INSERT into cars (car_model, dealer, car_year,  car_color, car_price, car_hps, car_mileage, car_damages, car_condition, car_seats, car_report) "  +  " VALUES ($car_model, $dealer, $car_year, $car_price, $car_hps, $car_mileage, $car_damages, $car_condition, $car_seats, $car_report)";
   

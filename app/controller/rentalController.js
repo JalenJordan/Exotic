@@ -41,6 +41,13 @@ class RentalController{
                .catch(this.common.findError(res));
      }
 
+     findByYear(req, res){
+          let car_year = req.params.car_year;
+          this.rentalDao.findByYear(car_year)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
      create(req, res){
           let rental = new RentalController();
   

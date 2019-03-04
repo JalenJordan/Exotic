@@ -25,6 +25,8 @@ router.get("/dealer/:dealer", function(req, res){
      rentalController.findByDealer(req, res);
 });
 
+router.get("/years/:car_year")
+
 // router.get("/:id", function(req, res){
 //      res.send("hello")
 // })
