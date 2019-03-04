@@ -21,8 +21,8 @@ router.get("/:id", function(req, res){
      console.log(req.params.id);
 });
 
-router.get("/dealer/:car_dealer", function(req, res){
-     rentalController.findByName(req, res);
+router.get("/dealer/:dealer", function(req, res){
+     rentalController.findByDealer(req, res);
 });
 
 // router.get("/:id", function(req, res){

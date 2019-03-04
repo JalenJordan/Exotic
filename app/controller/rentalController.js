@@ -35,8 +35,8 @@ class RentalController{
      }
 
      findByDealer(req, res){
-          let car_dealer = req.params.id;
-          this.rentalDao.findByDealer(car_dealer)
+          let dealer = req.params.dealer;
+          this.rentalDao.findByDealer(dealer)
                .then(this.common.findSuccess(res))
                .catch(this.common.findError(res));
      }
@@ -45,7 +45,7 @@ class RentalController{
           let rental = new RentalController();
   
           rental.car_model = req.body.car_model;
-          rental.car_dealer = req.body.car_dealer;
+          rental.dealer = req.body.dealer;
           rental.car_year = req.body.car_year;
           rental.car_color = req.body.car_color;
           rental.car_price = req.body.car_price;
@@ -66,7 +66,7 @@ class RentalController{
      
      rental.id = req.body.id;
      rental.car_model = req.body.car_model;
-     rental.car_dealer = req.body.car_dealer;
+     rental.dealer = req.body.dealer;
      rental.car_year = req.body.car_year;
      rental.car_color = req.body.car_color;
      rental.car_price = req.body.car_price;

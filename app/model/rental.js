@@ -1,8 +1,8 @@
 class Rental{
-     constructor(id, car_model, car_dealer, car_year, car_color, car_price, car_hps, car_mileage, car_damages, car_condition, car_seats, car_report){
+     constructor(id, car_model, dealer, car_year, car_color, car_price, car_hps, car_mileage, car_damages, car_condition, car_seats, car_report){
           this.id = id;
           this.car_model = car_model;
-          this.car_dealer = car_dealer;
+          this.car_dealer = dealer;
           this.car_year = car_year;
           this.car_color = car_color;
           this.car_price = car_price;
