@@ -12,7 +12,7 @@ router.get("/", function (req, res){
      // to pass in a paramater add a colon
 });
 
-router.get("/name/:car_model", function(req, res){
+router.get("/name/:model", function(req, res){
      rentalController.findByName(req, res);
 });
 
@@ -29,9 +29,21 @@ router.get("/year/:year", function(req, res){
      rentalController.findByYear(req,res);
 });
 
-// router.get("/:id", function(req, res){
-//      res.send("hello")
-// })
+router.get("/color/:color", function(req, res){
+     rentalController.findByColor(req, res);
+});
+
+router.get("/price/:price", function(req, res){
+     rentalController.findByPrice(req, res);
+});
+
+router.get("/hps/:hps", function(req, res){
+     rentalController.findByHPS(req, res);
+});
+
+router.get("/mileage/:mileage", function(req, res){
+     rentalController.findByMileage(req, res);
+});
 
 router.post('/create', function (req, res){
      rentalController.create(req, res);

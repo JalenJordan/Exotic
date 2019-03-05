@@ -28,8 +28,8 @@ class RentalController{
                .catch(this.common.findError(res));
      }
      findByName(req, res){
-          let car_model = req.params.car_model;
-          this.rentalDao.findByName(car_model)
+          let model = req.params.model;
+          this.rentalDao.findByName(model)
                .then(this.common.findSuccess(res))
                .catch(this.common.findError(res));
      }
@@ -48,20 +48,46 @@ class RentalController{
                .catch(this.common.findError(res));
      }
 
+     findByColor(req, res){
+          let color = req.params.color;
+          this.rentalDao.findByColor(color)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByPrice(req, res){
+          let price = req.params.price;
+          this.rentalDao.findByPrice(price)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByHPS(req, res){
+          let hps = req.params.hps;
+          this.rentalDao.findByHPS(hps)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByMileage(req, res){
+          let mileage = req.params.mileage;
+          this.rentalDao.findByMileage(mileage)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     
+
      create(req, res){
           let rental = new RentalController();
   
-          rental.car_model = req.body.car_model;
+          rental.model = req.body.model;
           rental.dealer = req.body.dealer;
           rental.year = req.body.year;
-          rental.car_color = req.body.car_color;
-          rental.car_price = req.body.car_price;
-          rental.car_hps = req.body.car_hps;
-          rental.car_mileage = req.body.car_mileage;
-          rental.car_damages = req.body.car_damages;
-          rental.car_condition = req.body.car_condition;
-          rental.car_seats = req.body.car_seats;
-          rental.car_report = req.body.car_report;
+          rental.color = req.body.color;
+          rental.price = req.body.price;
+          rental.hps = req.body.hps;
+          rental.mileage = req.body.mileage;
   
           return this.rentalDao.create(rental)
               .then(this.common.editSuccess(res))
@@ -72,18 +98,13 @@ class RentalController{
      let rental = new Rental();
      
      rental.id = req.body.id;
-     rental.car_model = req.body.car_model;
+     rental.model = req.body.model;
      rental.dealer = req.body.dealer;
      rental.year = req.body.year;
-     rental.car_color = req.body.car_color;
-     rental.car_price = req.body.car_price;
-     rental.car_hps = req.body.car_hps;
-     rental.car_mileage = req.body.car_mileage;
-     rental.car_damages = req.body.car_damages;
-     rental.car_condition = req.body.car_condition;
-     rental.car_seats = req.body.car_seats;
-     rental.car_report = req.body.car_report;
-
+     rental.color = req.body.color;
+     rental.price = req.body.price;
+     rental.hps = req.body.hps;
+     rental.mileage = req.body.mileage;
      
      return this.rentalDao.update(rental)
           .then(this.common.editSuccess(res))

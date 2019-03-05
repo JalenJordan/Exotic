@@ -12,16 +12,16 @@ class RentalDao{
                for (const row of rows){
                     rentals.push(new Rental(
                          row.id,
-                         row.car_model,
+                         row.model,
                          row.dealer,
                          row.year,
-                         row.car_color,
-                         row.car_price,
-                         row.car_hps,
-                         row.car_mileage,
-                         row.car_condition,
-                         row.car_seats,
-                         row.car_report
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
+                         row.condition,
+                         row.seats,
+                         row.report
                     ));
                };
                return rentals;
@@ -34,38 +34,35 @@ class RentalDao{
                for (const row of rows){
                     rentals.push(new Rental(
                          row.id,
-                         row.car_model,
+                         row.model,
                          row.dealer,
                          row.year,
-                         row.car_color,
-                         row.car_price,
-                         row.car_hps,
-                         row.car_mileage,
-                         row.car_condition,
-                         row.car_seats,
-                         row.car_report
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
+                         row.condition,
+                         row.seats,
+                         row.report
                     ));
                }
                return rentals;
           });
      }
-     findByName(car_model){
-          let sqlRequest = "SELECT * FROM cars WHERE car_model =  '" + car_model + "'";
+     findByName(model){
+          let sqlRequest = "SELECT * FROM cars WHERE model =  '" + model + "'";
           return this.common.findAll(sqlRequest).then(rows => {
                let rentals = [];
                for (const row of rows){
                     rentals.push(new Rental(
                          row.id,
-                         row.car_model,
+                         row.model,
                          row.dealer,
                          row.year,
-                         row.car_color,
-                         row.car_price,
-                         row.car_hps,
-                         row.car_mileage,
-                         row.car_condition,
-                         row.car_seats,
-                         row.car_report
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
                     ));
                }
                return rentals;
@@ -82,16 +79,13 @@ class RentalDao{
                for (const row of rows){
                     rentals.push(new Rental(
                          row.id,
-                         row.car_model,
+                         row.model,
                          row.dealer,
                          row.year,
-                         row.car_color,
-                         row.car_price,
-                         row.car_hps,
-                         row.car_mileage,
-                         row.car_condition,
-                         row.car_seats,
-                         row.car_report 
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
                     ));
                }               
                return rentals;
@@ -105,16 +99,93 @@ class RentalDao{
                for(const row of rows){
                     rentals.push(new Rental(
                          row.id,
-                         row.car_model,
+                         row.model,
                          row.dealer,
                          row.year,
-                         row.car_color,
-                         row.car_price,
-                         row.car_hps,
-                         row.car_mileage,
-                         row.car_condition,
-                         row.car_seats,
-                         row.car_report
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
+                    ));
+               }
+               return rentals;
+          });
+     }
+
+     findByColor(color){
+          let sqlRequest = "SELECT * FROM cars WHERE color= '" + color + "' ";
+          return this.common.findAll(sqlRequest).then(rows => {
+               let rentals = [];
+               for(const row of rows){
+                    rentals.push(new Rental(
+                         row.id,
+                         row.model,
+                         row.dealer,
+                         row.year,
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
+                    ));
+               }
+               return rentals;
+          });
+     }
+
+     findByPrice(price){
+          let sqlRequest = "SELECT * FROM cars WHERE price= " + price;
+          return this.common.findAll(sqlRequest).then(rows => {
+               let rentals = [];
+               for(const row of rows){
+                    rentals.push(new Rental(
+                         row.id,
+                         row.model,
+                         row.dealer,
+                         row.year,
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
+                    ));
+               }
+               return rentals;
+          });
+     }
+
+     findByHPS(hps){
+          let sqlRequest = "SELECT * FROM cars WHERE hps= " + hps;
+          return this.common.findAll(sqlRequest).then(rows => {
+               let rentals = [];
+               for(const row of rows){
+                    rentals.push(new Rental(
+                         row.id,
+                         row.model,
+                         row.dealer,
+                         row.year,
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
+                    ));
+               }
+               return rentals;
+          });
+     }
+
+     findByMileage(mileage){
+          let sqlRequest = "SELECT * FROM cars WHERE mileage= " + mileage;
+          return this.common.findAll(sqlRequest).then(rows => {
+               let rentals = [];
+               for(const row of rows){
+                    rentals.push(new Rental(
+                         row.id,
+                         row.model,
+                         row.dealer,
+                         row.year,
+                         row.color,
+                         row.price,
+                         row.hps,
+                         row.mileage,
                     ));
                }
                return rentals;
@@ -122,20 +193,16 @@ class RentalDao{
      }
 
      create(Rental){
-          let sqlRequest = "INSERT into cars (car_model, dealer, year,  car_color, car_price, car_hps, car_mileage, car_damages, car_condition, car_seats, car_report) "  +  " VALUES ($car_model, $dealer, $year, $car_price, $car_hps, $car_mileage, $car_damages, $car_condition, $car_seats, $car_report)";
+          let sqlRequest = "INSERT into cars (model, dealer, year,  color, price, hps, mileage) "  +  " VALUES ($model, $dealer, $year, $price, $hps, $mileage)";
   
           let sqlParams = {
-              $car_model: Rental.car_model,
+              $model: Rental.model,
               $dealer: Rental.dealer,
               $year: Rental.year,
-              $car_color: Rental.car_color,
-              $car_price: Rental.car_price,
-              $car_hps: Rental.car_hps,
-              $car_mileage: Rental.car_mileage,
-              $car_damages: Rental.car_damages,
-              $car_condition: Rental.car_condition,
-              $car_seats: Rental.car_seats,
-              $car_report: Rental.car_report
+              $color: Rental.color,
+              $price: Rental.price,
+              $hps: Rental.hps,
+              $mileage: Rental.mileage,
           };
           return this.common.run(sqlRequest, sqlParams);
       };
