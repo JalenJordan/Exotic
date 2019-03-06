@@ -1,14 +1,17 @@
 const Rental = require("../model/rental");
 const daoCommon = require("./common/daoCommon");
+const Account = require("../model/account");
+const Report = require("../model/report");
 
 class RentalDao{
      constructor(){
           this.common = new daoCommon();
      }
      findAll(){
-          let sqlRequest = "SELECT * FROM cars ORDER BY year ASC";
+          let sqlRequest = "SELECT * FROM cars ORDER BY price ASC";
           return this.common.findAll(sqlRequest).then(rows => {
                let rentals = [];
+               console.log(rows);
                for (const row of rows){
                     rentals.push(new Rental(
                          row.id,
@@ -19,16 +22,14 @@ class RentalDao{
                          row.price,
                          row.hps,
                          row.mileage,
-                         row.condition,
-                         row.seats,
-                         row.report
                     ));
                };
                return rentals;
           });
      }
+
      findById(id){
-          let sqlRequest = "SELECT * FROM cars WHERE id = " + id;
+          let sqlRequest = "SELECT * FROM cars  WHERE id = " + id;
           return this.common.findAll(sqlRequest).then(rows => {
                let rentals = [];
                for (const row of rows){
@@ -41,19 +42,17 @@ class RentalDao{
                          row.price,
                          row.hps,
                          row.mileage,
-                         row.condition,
-                         row.seats,
-                         row.report
                     ));
                }
                return rentals;
           });
      }
+
      findByName(model){
           let sqlRequest = "SELECT * FROM cars WHERE model =  '" + model + "'";
           return this.common.findAll(sqlRequest).then(rows => {
                let rentals = [];
-               for (const row of rows){
+               for (const row in rows){
                     rentals.push(new Rental(
                          row.id,
                          row.model,
@@ -171,7 +170,7 @@ class RentalDao{
                return rentals;
           });
      }
-
+     
      findByMileage(mileage){
           let sqlRequest = "SELECT * FROM cars WHERE mileage= " + mileage;
           return this.common.findAll(sqlRequest).then(rows => {
@@ -192,6 +191,190 @@ class RentalDao{
           });
      }
 
+
+     findAllUsers(){
+          let sqlRequest = "SELECT * FROM users ORDER BY id ASC";
+          console.log("came here");
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let accounts = []
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.id,
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByUsername(username){
+          let sqlRequest = "SELECT * FROM users WHERE username= '" + username + "' ";
+          return this.common.findAll(sqlRequest).then(rows => {
+               let accounts = [];
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByPassword(password){
+          let sqlRequest = "SELECT * FROM users WHERE password= " + password;
+          return this.common.findAll(sqlRequest).then(rows => {
+               let accounts = [];
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByFname(fname){
+          let sqlRequest = "SELECT * FROM users WHERE fname= '" + fname + "' ";
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let accounts = []
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByLname(lname){
+          let sqlRequest = "SELECT * FROM users WHERE lname= '" + lname + "' ";
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let accounts = []
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByDOB(dob){
+          let sqlRequest = "SELECT * FROM users WHERE dob= " + dob;
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let accounts = []
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByPhone(phone){
+          let sqlRequest = "SELECT * FROM users WHERE phone= " + phone;
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let accounts = []
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByEmail(email){
+          let sqlRequest = "SELECT * FROM users WHERE email= '" + email + "' ";
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let accounts = []
+               for(const row of rows){
+                    accounts.push(new Account(
+                         row.username,
+                         row.password,
+                         row.fname,
+                         row.lname,
+                         row.dob,
+                         row.phone,
+                         row.email,
+                    ));
+               }
+               return accounts;
+          });
+     }
+
+     findByDamages(damages){
+          let sqlRequest = "SELECT * FROM report WHERE damages= '" + damages + "' ";
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let reports = []
+               for(const row of rows){
+                    reports.push(new Report(
+                         row.damages,
+                         row.condition,
+                         row.status,
+                    ));
+               }
+               return reports;
+          });
+     }
+
+     findByCondition(condition){
+          let sqlRequest = "SELECT * FROM report WHERE condition= '" + condition + "' ";
+          return this.common.findAll(sqlRequest).then(rows =>{
+               let reports = []
+               for(const row of rows){
+                    reports.push(new Report(
+                         row.damages,
+                         row.condition,
+                         row.status,
+                    ));
+               }
+               return reports;
+          });
+     }
      create(Rental){
           let sqlRequest = "INSERT into cars (model, dealer, year,  color, price, hps, mileage) "  +  " VALUES ($model, $dealer, $year, $price, $hps, $mileage)";
   
@@ -205,7 +388,33 @@ class RentalDao{
               $mileage: Rental.mileage,
           };
           return this.common.run(sqlRequest, sqlParams);
-      };
+     };
+     
+     create(Account){
+          let sqlRequest = "INSERT into users (username, password, fname, lname, dob, phone, email) " + " VALUES ($username, $password, $fname, $lname, $dob, $phone, $email";
+
+          let sqlParams = {
+               $username: Account.username,
+               $password: Account.password,
+               $fname: Account.fname,
+               $lname: Account.lname,
+               $dob: Account.dob,
+               $phone: Account.phone,
+               $email: Account.email,
+          };
+          return this.common.run(sqlRequest, sqlParams);
+     };
+
+     create(Report){
+          let sqlRequest = "INSERT into reports (damages, condition, status) " + " VALUES ($damages, $condition, $status";
+
+          let sqlParams = {
+               $damages: Report.damages,
+               $condition: Report.condition,
+               $status: Report.status,
+          };
+          return this.common.run(sqlRequest, sqlParams);
+     };
 
      deleteById(id){
           let sqlRequest = "DELETE FROM cars WHERE id=$id";

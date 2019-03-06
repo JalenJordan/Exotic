@@ -1,6 +1,8 @@
 const RentalDao = require("../dao/rentalDao");
 const ControllerCommon = require("./common/controllerCommon");
 const Rental = require("../model/rental");
+const Account = require("../model/account");
+const Report = require("../model/report");
 
 class RentalController{
 
@@ -22,14 +24,30 @@ class RentalController{
                .then(this.common.editSuccess(res))
                .catch(this.common.serverError(res));
      };
+
      findAll(res){
           this.rentalDao.findAll()
                .then(this.common.findSuccess(res))
                .catch(this.common.findError(res));
      }
+
      findByName(req, res){
           let model = req.params.model;
           this.rentalDao.findByName(model)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findAllColor(req, res){
+          let color = req.params.color;
+          this.rentalDao.findAllColor(color)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByPassword(req, res){
+          let password = req.params.password;
+          this.rentalDao.findByPassword(password)
                .then(this.common.findSuccess(res))
                .catch(this.common.findError(res));
      }
@@ -76,7 +94,81 @@ class RentalController{
                .catch(this.common.findError(res));
      }
 
+     findAllUsers(res){
+          this.rentalDao.findAllUsers()
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByUsername(req, res){
+          let username = req.params.username;
+          this.rentalDao.findByUsername(username)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res))
+     }
+
+     findByPassword(req, res){
+          let password = req.params.password;
+          this.rentalDao.findByPassword(password)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByFname(req, res){
+          let fname = req.params.fname;
+          this.rentalDao.findByFname(fname)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByLname(req, res){
+          let lname = req.params.lname;
+          this.rentalDao.findByLname(lname)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByDOB(req, res){
+          let dob = req.params.dob;
+          this.rentalDao.findByDOB(dob)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByPhone(req, res){
+          let phone = req.params.phone;
+          this.rentalDao.findByPhone(phone)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByEmail(req, res){
+          let email = req.params.email;
+          this.rentalDao.findByEmail(email)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByDamages(req, res){
+          let damages = req.params.damages;
+          this.rentalDao.findByDamages(damages)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
      
+     findByCondition(req, res){
+          let condition = req.params.condition;
+          this.rentalDao.findByCondition(condition)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
+
+     findByStatus(req, res){
+          let status = req.params.status;
+          this.rentalDao.findByStatus(status)
+               .then(this.common.findSuccess(res))
+               .catch(this.common.findError(res));
+     }
 
      create(req, res){
           let rental = new RentalController();
@@ -92,7 +184,7 @@ class RentalController{
           return this.rentalDao.create(rental)
               .then(this.common.editSuccess(res))
               .catch(this.common.serverError(res));
-      }
+          };
 
      update(req, res) {
      let rental = new Rental();
@@ -110,6 +202,36 @@ class RentalController{
           .then(this.common.editSuccess(res))
           .catch(this.common.serverError(res));
      };
+
+     create(req, res){
+          let account = new RentalController();
+          account.username = req.body.username;
+          account.password = req.body.password;
+          account.fname = req.body.fname;
+          account.lname = req.body.lname;
+          account.dob = req.body.dob;
+          account.phone = req.body.phone;
+          account.email = req.body.email;
+
+          return this.rentalDao.create(account)
+               .then(this.common.editSuccess(res))
+               .catch(this.common.serverError(res));
+     };
+
+     update(req, res){
+          let account = new Account();
+          account.username = req.body.username;
+          account.password = req.body.password;
+          account.fname = req.body.fname;
+          account.lname = req.body.lname;
+          account.dob = req.body.dob;
+          account.phone = req.body.phone;
+          account.email = req.body.email;
+
+          return this.rentalDao.update(account)
+               .then(this.common.editSuccess(res))
+               .catch(this.common.serverError(res));
+     }
 }
 
 module.exports = RentalController;

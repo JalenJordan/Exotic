@@ -14,8 +14,10 @@ class Common {
 
     findAll(sqlRequest) {
         return new Promise(function (resolve, reject) {
+            console.log(sqlRequest);
             database.db.all(sqlRequest, function (err, rows) {
                 if (err) {
+                    console.log(err);
                     reject(
                         new DaoError(20, "Internal server error")
                     );
