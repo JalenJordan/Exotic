@@ -94,6 +94,8 @@ class RentalController{
                .catch(this.common.findError(res));
      }
 
+     //Account Controllers
+
      findAllUsers(res){
           this.rentalDao.findAllUsers()
                .then(this.common.findSuccess(res))
@@ -149,6 +151,8 @@ class RentalController{
                .catch(this.common.findError(res));
      }
 
+     //Report Controllers
+
      findByDamages(req, res){
           let damages = req.params.damages;
           this.rentalDao.findByDamages(damages)
@@ -169,6 +173,8 @@ class RentalController{
                .then(this.common.findSuccess(res))
                .catch(this.common.findError(res));
      }
+
+     //Create and update Cars Data
 
      create(req, res){
           let rental = new RentalController();
@@ -203,6 +209,8 @@ class RentalController{
           .catch(this.common.serverError(res));
      };
 
+     //Creates and update Account data
+
      create(req, res){
           let account = new RentalController();
           account.username = req.body.username;
@@ -229,6 +237,31 @@ class RentalController{
           account.email = req.body.email;
 
           return this.rentalDao.update(account)
+               .then(this.common.editSuccess(res))
+               .catch(this.common.serverError(res));
+     }
+
+     //Create and update report data
+
+     create(req, res){
+          let report = new RentalController();
+
+          report.damages = req.body.damages;
+          report.condition = req.body.condition;
+          report.status = req.body.status;
+
+          return this.rentalDao.create(report)
+               .then(this.common.editSuccess(res))
+               .catch(this.common.serverError(res));
+          };
+     
+     update(req, res){
+          let report = new Report();
+          report.damages = req.body.damages;
+          report.condition= req.body.condition;
+          report.status = req.body.status;
+
+          return this.rentalDao.update(report)
                .then(this.common.editSuccess(res))
                .catch(this.common.serverError(res));
      }

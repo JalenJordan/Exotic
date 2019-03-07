@@ -7,6 +7,9 @@ class RentalDao{
      constructor(){
           this.common = new daoCommon();
      }
+
+     //Car Database Daos
+     
      findAll(){
           let sqlRequest = "SELECT * FROM cars ORDER BY price ASC";
           return this.common.findAll(sqlRequest).then(rows => {
@@ -192,6 +195,8 @@ class RentalDao{
      }
 
 
+     //Users Database Daos
+
      findAllUsers(){
           let sqlRequest = "SELECT * FROM users ORDER BY id ASC";
           console.log("came here");
@@ -346,6 +351,8 @@ class RentalDao{
           });
      }
 
+     //Report Database Daos
+
      findByDamages(damages){
           let sqlRequest = "SELECT * FROM report WHERE damages= '" + damages + "' ";
           return this.common.findAll(sqlRequest).then(rows =>{
@@ -375,6 +382,8 @@ class RentalDao{
                return reports;
           });
      }
+
+     
      create(Rental){
           let sqlRequest = "INSERT into cars (model, dealer, year,  color, price, hps, mileage) "  +  " VALUES ($model, $dealer, $year, $price, $hps, $mileage)";
   

@@ -5,7 +5,7 @@ const router = express.Router();
 const RentalController = require("../../controller/rentalController");
 const rentalController = new RentalController();
 
-//student routes
+//Cars Database routes
 router.get("/", function (req, res){
      rentalController.findAll(res);
      //res.send([{hello:"world"}]);;
@@ -16,7 +16,7 @@ router.get("/name/:model", function(req, res){
      rentalController.findByName(req, res);
 });
 
-router.get("rental/:id", function(req, res){
+router.get("/:id", function(req, res){
      rentalController.findById(req, res);
      console.log(req.params.id);
 });
@@ -49,6 +49,8 @@ router.get("/color", function(req, res){
      rentalController.findAllColor(res);
 });
 
+//Users Database Routes
+
 router.get("/account", function(req, res){
      rentalController.findAllUsers(res);
 });
@@ -76,6 +78,8 @@ router.get("/phone/:phone", function(req, res){
 router.get("/email/:email", function(req, res){
      rentalController.findByEmail(req, res);
 });
+
+//Report Database Routes
 
 router.get("/damages/:damages", function(req, res){
      rentalController.findByDamages(req, res);
